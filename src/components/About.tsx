@@ -1,28 +1,34 @@
 'use client';
 import React from 'react';
+import selfPic from './self.jpeg';
 import { Code } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const About: React.FC = () => {
-  const paragraphVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
+// Variants for staggered children
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } }
+};
+const paragraphVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+const headingVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+};
 
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.15 } }
-  };
-
+export default function About() {
   return (
     <motion.section
       id="about"
       className="relative py-16 bg-white overflow-hidden font-serif text-gray-800"
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
-      {/* Blobs */}
+      {/* Background Blobs */}
       <motion.div
         className="absolute top-0 left-0 w-64 h-64 bg-[#EDE6C0]/30 rounded-full filter blur-3xl"
         animate={{ x: [0, 60, 0], y: [0, 30, 0], scale: [1, 1.05, 1] }}
@@ -39,92 +45,73 @@ const About: React.FC = () => {
         transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4">
-        {/* Heading */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4">
+        {/* Section Heading */}
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
           className="text-center mb-8"
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-2">
             About <span className="text-[#D2B48C]">Me</span>
           </h2>
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: '4rem' }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="h-1 bg-gradient-to-r from-[#D2B48C] to-[#A89F91] mx-auto rounded"
-          />
         </motion.div>
 
-        {/* Content & Photo */}
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          {/* Text */}
-          <motion.div
-            className="md:w-1/2 space-y-4"
-            variants={containerVariants}
-          >
-            <motion.p variants={paragraphVariants} className="text-base leading-relaxed">
-              💡 I'm a software engineer passionate about crafting solutions that matter. From Node.js backends to React frontends, I write clean, scalable code.
-            </motion.p>
-            <motion.p variants={paragraphVariants} className="text-base leading-relaxed">
-              🚀 Highlight: Led a healthcare web app project with predictive models for faster diagnoses, collaborating across teams to align tech with goals.
-            </motion.p>
-            <motion.p variants={paragraphVariants} className="text-base leading-relaxed">
-              🧠 Always learning—exploring AWS, automating workflows, and refining UX. I thrive in agile teams and mentorship roles.
-            </motion.p>
-            <motion.div variants={paragraphVariants} className="text-base leading-relaxed">
-              <strong>Key Skills:</strong>
-              <ul className="list-disc list-inside mt-2 space-y-1">
-                <li>Full-Stack: Java, Python, React, Node.js, Flask</li>
-                <li>DBs: PostgreSQL, MongoDB</li>
-                <li>Cloud & DevOps: AWS EC2, S3, Docker</li>
-                <li>Agile & Product: Sprint planning, Figma design</li>
-              </ul>
-            </motion.div>
-            <motion.p variants={paragraphVariants} className="text-base leading-relaxed">
-              Let’s connect if you’re building something exciting or want to collaborate! 👋
+        {/* Two-column content */}
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-12">
+          {/* Text Column */}
+          <motion.div className="md:w-3/5 space-y-6" variants={containerVariants}>
+            {[
+              "💡 I'm a software engineer driven by the challenge of building real-world solutions that make a difference. With hands-on experience across the full stack, from backend systems with JavaScript, Node.js, and Flask to dynamic frontends in React, I love solving complex problems through clean, scalable code.",
+              "🚀 One highlight from my work includes leading the development of a healthcare web app powered by predictive models to support faster diagnosis. I’ve also collaborated closely with cross-functional teams and stakeholders to align tech solutions with business goals, driving both innovation and efficiency.",
+              "🧠 I'm always learning, whether it's diving into cloud platforms like AWS, automation, or refining UI/UX workflows. I thrive in agile environments and enjoy mentoring peers, driving team collaboration, and turning ideas into impact."
+            ].map((txt, idx) => (
+              <motion.p
+                key={idx}
+                className="text-base leading-relaxed"
+                variants={paragraphVariants}
+              >
+                {txt}
+              </motion.p>
+            ))}
+
+            <motion.p className="text-base leading-relaxed" variants={paragraphVariants}>
+              Let’s connect if you’re building something exciting or just want to talk tech! 👋
             </motion.p>
 
-            {/* Badges */}
-            <motion.div
-              className="mt-6 flex flex-wrap gap-3"
-              variants={paragraphVariants}
-            >
-              {['2.5+ Years Experience', 'Open to Work'].map((badge, i) => (
+            <motion.div className="mt-6 flex flex-wrap gap-3" variants={paragraphVariants}>
+              {['2.5+ Years Experience', 'Open to Work'].map((b, i) => (
                 <motion.span
                   key={i}
                   whileHover={{ scale: 1.05 }}
-                  className={
-                    `px-3 py-1 rounded-full font-medium transition-transform text-sm ` +
-                    (badge === 'Open to Work'
-                      ? 'bg-gray-800 text-white shadow'
-                      : 'bg-[#EDE6C0]/50 text-[#A89F91]')
-                  }
+                  className={`px-3 py-1 rounded-full font-medium text-sm transition-transform ${
+                    b === 'Open to Work'
+                      ? 'bg-gray-800 text-white'
+                      : 'bg-[#A89F91] text-white'
+                  }`}
                 >
-                  {badge}
+                  {b}
                 </motion.span>
               ))}
             </motion.div>
           </motion.div>
 
-          {/* Photo */}
+          {/* Photo Column */}
           <motion.div
-            className="md:w-1/2 flex justify-center relative md:-top-6 md:left-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            className="md:w-2/5 flex justify-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={paragraphVariants}
             transition={{ delay: 0.8, type: 'spring', stiffness: 180 }}
-            whileHover={{ scale: 1.03 }}
+            whileHover={{ scale: 1.05 }}
           >
-            <div className="relative w-72 h-72 rounded-lg overflow-hidden border-4 border-[#EDE6C0]/40 shadow-lg">
-              <img
-                src="/self.jpeg"
-                alt="Archita Palkar"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-r from-[#D2B48C] to-[#A89F91] rounded-full flex items-center justify-center shadow-md">
-                <Code className="w-8 h-8 text-white" />
+            <div className="relative w-[30rem] h-[30rem] rounded-lg overflow-hidden border-4 border-[#EDE6C0]/40 shadow-lg">
+              <img src={selfPic} alt="Archita Palkar" className="w-full h-full object-cover" />
+              <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-gradient-to-r from-[#D2B48C] to-[#A89F91] rounded-full flex items-center justify-center shadow-md">
+                <Code className="w-14 h-14 text-white" />
               </div>
             </div>
           </motion.div>
@@ -132,6 +119,4 @@ const About: React.FC = () => {
       </div>
     </motion.section>
   );
-};
-
-export default About;
+}

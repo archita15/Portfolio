@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const roles = ['Software Developer', 'Full-Stack Developer','Software Engineer', 'Frontend Developer','UI/UX Designer'];
+const roles = ['Software Developer', 'Full-Stack Developer', 'Software Engineer', 'Frontend Developer', 'UI/UX Designer'];
 
 const Hero: React.FC = () => {
   const [text, setText] = useState('');
@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-white to-[#F5F5DC] overflow-hidden"
+      className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-white to-[#F5F5DC] overflow-hidden font-serif text-gray-800"
     >
       {/* Creative Blobs & Shapes */}
       <motion.div
@@ -64,9 +64,10 @@ const Hero: React.FC = () => {
       <div className="relative z-10 text-center px-6">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-[#A89F91]"
+          className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#A89F91] leading-tight"
         >
           Hello, I'm{' '}
           <span className="text-gray-800">Archita Palkar</span>
@@ -74,18 +75,20 @@ const Hero: React.FC = () => {
         {/* Typing Effect Subtitle */}
         <motion.p
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-4 text-xl text-gray-700 h-8"
+          className="mt-4 text-lg text-gray-700 h-8 leading-snug"
         >
           {text}
           <span className="inline-block w-1 h-6 bg-gray-800 animate-pulse align-middle ml-1" />
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-4 max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed"
+          className="mt-4 max-w-2xl mx-auto text-base text-gray-600 leading-relaxed"
         >
           Blending simplicity and elegance to build intuitive digital experiences.
         </motion.p>
@@ -93,7 +96,8 @@ const Hero: React.FC = () => {
         {/* Social Icons */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ delay: 1.2, duration: 0.8 }}
           className="mt-8 flex justify-center space-x-6"
         >
@@ -118,7 +122,8 @@ const Hero: React.FC = () => {
         {/* Call-to-Action Buttons */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ delay: 1.4, duration: 0.8 }}
           className="mt-10 flex justify-center gap-6"
         >
@@ -129,8 +134,9 @@ const Hero: React.FC = () => {
             Explore
           </button>
           <a
-            href="/resume.pdf"
-            download
+            href="https://drive.google.com/file/d/1xS1-fQzN7fqgK9HD63xhZvYQnx0CLi8L/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3 border-2 border-[#A89F91] text-gray-800 font-medium rounded-full hover:bg-[#A89F91] hover:text-white transition-colors duration-300"
           >
             Resume
