@@ -15,6 +15,14 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
+    title: 'FlickFix',
+    description: 'Movie ticket booking system built with the MERN stack and GraphQL. Features include a fast and efficient booking flow, admin panel with full CRUD operations, and Stripe integration for secure payments.',
+    image: 'https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2022/02/25143725/shutterstock_1464729836-2-1024x683.jpg',
+    technologies: ['MongoDB', 'Express.js', 'React.js', 'Node.js'],
+    githubUrl: 'https://github.com/archita15/FLICKFIX---Movie-Booking-Management-Application'
+  },
+  {
+    id: 2,
     title: 'Echo Tunes',
     description: 'Custom music player app built with Next.js, Firebase, and Redux. Features include audio playback, playlist management, Cloudinary-powered file uploads, and automated deployments with Jenkins.',
     image: 'https://i.pinimg.com/originals/0d/4b/44/0d4b44ca527c67b2db5e3faf17a9848b.jpg',
@@ -22,20 +30,12 @@ const projects: Project[] = [
     githubUrl: 'https://github.com/archita15/EchoTunes---Music-Player-Application'
   },
   {
-    id: 2,
+    id: 3,
     title: 'Secure Banking System',
     description: 'Secure banking application built with React.js, Spring Boot, and PostgreSQL. Features include JWT-based authentication, HTTPS/TLS encryption, optimized payment processing, and containerized deployment with Docker.',
     image: 'https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&w=800',
     technologies: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker'],
     githubUrl: 'https://github.com/archita15/Secure-Banking-system'
-  },
-  {
-    id: 3,
-    title: 'FlickFix',
-    description: 'Movie ticket booking system built with the MERN stack and GraphQL. Features include a fast and efficient booking flow, admin panel with full CRUD operations, and Stripe integration for secure payments.',
-    image: 'https://offloadmedia.feverup.com/secretldn.com/wp-content/uploads/2022/02/25143725/shutterstock_1464729836-2-1024x683.jpg',
-    technologies: ['MongoDB', 'Express.js', 'React.js', 'Node.js'],
-    githubUrl: 'https://github.com/archita15/FLICKFIX---Movie-Booking-Management-Application'
   }
 ];
 

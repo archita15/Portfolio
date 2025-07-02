@@ -16,6 +16,15 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // 1️⃣ Inject the Google Font link into <head>
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Pacifico&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
+
+  // 2️⃣ Track scroll for backdrop/shadow
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', onScroll);
@@ -49,21 +58,28 @@ export default function Header() {
       }`}
     >
       <nav className="relative max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
-        {/* Logo & Blob */}
-        <div className="relative flex items-center">
+        {/* Logo & Blob (now clickable) */}
+        <div
+          className="relative flex items-center cursor-pointer"
+          onClick={() => scrollTo('home')}
+          aria-label="Go to Home"
+        >
           <motion.div
             className="absolute -left-4 -top-4 w-16 h-16 bg-[#EDE6C0]/40 rounded-full filter blur-xl"
             animate={{ opacity: [0.3, 0.6, 0.3] }}
             transition={{ duration: 5, repeat: Infinity }}
           />
-          <h1 className="relative text-2xl font-bold text-gray-900">
+          <h1
+            className="relative text-2xl text-gray-900"
+            style={{ fontFamily: 'Pacifico, cursive' }}
+          >
             <span className="text-[#D2B48C]">A</span>P
           </h1>
         </div>
 
         {/* Desktop Links */}
         <div className="hidden md:flex space-x-8">
-          {navItems.map(item => (
+          {navItems.map((item) => (
             <motion.button
               key={item.id}
               onClick={() => scrollTo(item.id)}
@@ -77,7 +93,11 @@ export default function Header() {
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
-          <button onClick={() => setIsMenuOpen(open => !open)} className="text-gray-900">
+          <button
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="text-gray-900"
+            aria-label="Toggle menu"
+          >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -93,7 +113,7 @@ export default function Header() {
               className="absolute top-full inset-x-4 bg-white rounded-xl shadow-lg overflow-hidden mt-2"
             >
               <div className="flex flex-col p-4">
-                {navItems.map(item => (
+                {navItems.map((item) => (
                   <motion.button
                     key={item.id}
                     onClick={() => scrollTo(item.id)}
