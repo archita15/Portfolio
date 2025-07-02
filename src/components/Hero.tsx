@@ -90,7 +90,7 @@ const Hero: React.FC = () => {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="mt-4 max-w-2xl mx-auto text-base text-gray-600 leading-relaxed"
         >
-          Blending simplicity and elegance to build intuitive digital experiences.
+          Putting the ‘fun’ in function because buttons shouldn’t be boring
         </motion.p>
 
         {/* Social Icons */}

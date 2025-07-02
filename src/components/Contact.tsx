@@ -1,14 +1,16 @@
 'use client';
 import React, { useState } from 'react';
-import { Mail, Phone, Send, Github, Linkedin} from 'lucide-react';
+import { Mail, Send, Github, Linkedin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Submitted', formData);
@@ -16,9 +18,14 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: <Mail className="w-6 h-6 text-[#D2B48C]" />, label: 'Email', value: 'architapalkar15@gmail.com', href: 'mailto:architapalkar15@gmail.com' },
-    { icon: <Phone className="w-6 h-6 text-[#D2B48C]" />, label: 'Phone', value: '+1(812)-391-1199', href: 'tel:+1(812)-391-1199' }
+    {
+      icon: <Mail className="w-6 h-6 text-[#D2B48C]" />,
+      label: 'Email',
+      value: 'architapalkar15@gmail.com',
+      href: 'mailto:architapalkar15@gmail.com'
+    }
   ];
+
   const social = [
     { icon: <Github className="w-6 h-6" />, href: 'https://github.com/archita15', label: 'GitHub' },
     { icon: <Linkedin className="w-6 h-6" />, href: 'https://www.linkedin.com/in/architapalkar/', label: 'LinkedIn' }
@@ -50,10 +57,10 @@ export default function Contact() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.h2 variants={item} className="text-3xl md:text-4xl font-bold text-center mb-4">
-          Get In <span className="text-[#D2B48C]">Touch</span>
+          Let’s Connect <span className="text-[#D2B48C]">Professionally</span>
         </motion.h2>
         <motion.p variants={item} className="text-center text-gray-600 mb-12">
-          Have a project in mind? Let's create something amazing together.
+          Whether it’s a collaboration or a quick hello, feel free to reach out.
         </motion.p>
 
         <div className="grid lg:grid-cols-2 gap-10">
@@ -100,7 +107,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#D2B48C] focus:border-[#D2B48C]"
-                    placeholder="Your Name"
+                    placeholder="Your full name"
                   />
                 </div>
                 <div>
@@ -112,7 +119,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#D2B48C] focus:border-[#D2B48C]"
-                    placeholder="you@example.com"
+                    placeholder="your@email.com"
                   />
                 </div>
               </motion.div>
@@ -124,7 +131,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#D2B48C] focus:border-[#D2B48C]"
-                  placeholder="Subject"
+                  placeholder="What’s this about?"
                 />
               </motion.div>
               <motion.div variants={item}>
@@ -136,7 +143,7 @@ export default function Contact() {
                   required
                   rows={4}
                   className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#D2B48C] focus:border-[#D2B48C] resize-none"
-                  placeholder="Your message..."
+                  placeholder="Tell me more..."
                 />
               </motion.div>
               <motion.button
